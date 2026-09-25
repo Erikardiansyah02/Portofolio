@@ -1,461 +1,1083 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Profesional</title>
+    <title>Erik Ardiansyah | Robotics & Mechanical Engineer Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            black: '#0F172A',     /* Dark background */
-                            card: '#1E293B',      /* Card container background */
-                            blue: '#2563EB',      /* Vibrant blue highlight */
-                            blueLight: '#3B82F6', /* Lighter blue for hover */
-                            yellow: '#FACC15',    /* Accent yellow */
-                            yellowHover: '#EAB308',
-                            white: '#F8FAFC',     /* Light text */
-                            grayText: '#94A3B8'   /* Muted text */
-                        }
+                        neon: {
+                            blue: '#00f0ff',
+                            cyan: '#0a84ff',
+                            purple: '#7000ff'
+                        },
+                        darkbg: '#0a0f1d',
+                        darkcard: '#121929',
+                        darkborder: '#1e293b'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
                     }
                 }
             }
         }
     </script>
-
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Custom keyframe animations for smooth entrance */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% {
-                box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(250, 204, 21, 0.5);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .animate-fade-in-down {
-            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Stagger helper classes */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
-
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0F172A;
+            background: #000000;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2563EB;
+            background: #1e293b;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #FACC15;
+            background: #00f0ff;
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+        }
+        
+        /* Solid Black Background (Selain Header & Footer, Tanpa Corak) */
+        body {
+            background-color: #000000 !important;
+            background-image: none !important;
+            color: #e2e8f0 !important;
+        }
+
+        .bg-grid-pattern {
+            background-image: none !important;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        /* Header Tetap Dark */
+        header {
+            background-color: rgba(10, 15, 29, 0.95) !important;
+            border-color: #1e293b !important;
+            color: #e2e8f0 !important;
+        }
+        header a, header button, header span, header nav {
+            color: #e2e8f0;
+        }
+        header a:hover {
+            color: #00f0ff !important;
+        }
+        header .text-white {
+            color: #ffffff !important;
+        }
+
+        /* Footer Tetap Dark */
+        footer {
+            background-color: #0a0f1d !important;
+            border-color: #1e293b !important;
+            color: #94a3b8 !important;
+        }
+        footer .text-slate-500 {
+            color: #64748b !important;
+        }
+
+        /* Content / Main Styling on Solid Black Background */
+        main {
+            background-color: #000000 !important;
+            background-image: none !important;
+        }
+
+        main .bg-darkcard {
+            background-color: #121929 !important;
+            border-color: #1e293b !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* Headings & Text in Content */
+        main .text-slate-100 {
+            color: #f8fafc !important;
+        }
+        main .text-slate-200 {
+            color: #e2e8f0 !important;
+        }
+        main .text-slate-300 {
+            color: #cbd5e1 !important;
+        }
+        main .text-slate-400 {
+            color: #94a3b8 !important;
+        }
+
+        /* Borders in Content */
+        main .border-slate-800 {
+            border-color: #1e293b !important;
+        }
+        main .border-slate-700 {
+            border-color: #334155 !important;
+        }
+
+        /* Input fields in Form */
+        main input,
+        main textarea {
+            background-color: #0f172a !important;
+            border-color: #1e293b !important;
+            color: #f8fafc !important;
+        }
+        main input::placeholder,
+        main textarea::placeholder {
+            color: #64748b !important;
+        }
+
+        /* Badges & Chips in Content */
+        main .bg-slate-800\/60,
+        main .bg-slate-800 {
+            background-color: #1e293b !important;
+            color: #cbd5e1 !important;
+            border-color: #334155 !important;
+        }
+
+        main .text-cyan-300 {
+            color: #67e8f9 !important;
+        }
+        main .text-purple-300 {
+            color: #d8b4fe !important;
+        }
+
+        /* Skill bars */
+        main .bg-slate-800.rounded-full {
+            background-color: #1e293b !important;
+        }
+
+        /* Filter buttons */
+        main .skill-tab-btn:not(.active-tab),
+        main .proj-filter-btn:not(.active-proj-btn) {
+            background-color: #1e293b !important;
+            color: #cbd5e1 !important;
+            border: 1px solid #334155 !important;
+        }
+        main .skill-tab-btn:not(.active-tab):hover,
+        main .proj-filter-btn:not(.active-proj-btn):hover {
+            background-color: #334155 !important;
+            color: #ffffff !important;
+        }
+
+        /* Work Motto Box in About */
+        main .bg-gradient-to-r.from-cyan-950\/40 {
+            background: linear-gradient(to right, rgba(8, 51, 68, 0.4), rgba(30, 58, 138, 0.4)) !important;
+            border-color: rgba(6, 182, 212, 0.3) !important;
+        }
+        main .bg-gradient-to-r.from-cyan-950\/40 blockquote {
+            color: #e2e8f0 !important;
+        }
+
+        /* Modal Dialogs */
+        #modalDelivery > div,
+        #modalHockey > div {
+            background-color: #121929 !important;
+            border-color: #1e293b !important;
+            color: #e2e8f0 !important;
+        }
+        #modalDelivery .text-slate-100,
+        #modalHockey .text-slate-100 {
+            color: #f8fafc !important;
+        }
+        #modalDelivery .text-slate-300,
+        #modalHockey .text-slate-300 {
+            color: #cbd5e1 !important;
+        }
+        #modalDelivery .bg-slate-800,
+        #modalHockey .bg-slate-800 {
+            background-color: #1e293b !important;
+            color: #cbd5e1 !important;
+            border-color: #334155 !important;
         }
     </style>
 </head>
-<body class="bg-brand-black text-brand-white font-sans antialiased overflow-x-hidden selection:bg-brand-yellow selection:text-brand-black">
+<body class="bg-black text-slate-200 font-sans transition-colors duration-300 min-h-screen">
 
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-black/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-darkbg/95 border-b border-slate-800 transition-colors">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo -->
-                <a href="#hero" class="flex items-center gap-2 group animate-fade-in-down">
-                    <div class="w-10 h-10 rounded-xl bg-brand-blue flex items-center justify-center font-bold text-xl text-brand-yellow group-hover:scale-105 transition-transform">
-                        E
+                <!-- Area Nama dan Ikon Kiri (Rapat di Kiri, gap 0px, Avatar Profil Siluet) -->
+                <a href="#" class="flex items-center space-x-1 group flex-shrink-0">
+                    <div class="w-9 h-9 rounded-full shadow-md shadow-cyan-500/25 group-hover:scale-105 transition-transform overflow-hidden flex-shrink-0 border-2 border-cyan-500/50">
+                        <img src="foto1.jpeg" alt="Profile" class="w-10 h-10 rounded-full border border-cyan-500/50">
                     </div>
-                    <span class="text-xl font-bold tracking-tight text-brand-white">
-                        Erik<span class="text-brand-yellow">.dev</span>
-                    </span>
+                    <span class="font-bold text-lg tracking-wide text-white dark:text-white light:text-slate-900 group-hover:text-cyan-400 transition-colors">Profile</span>
                 </a>
 
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 animate-fade-in-down">
-                    <a href="#hero" class="px-4 py-2 rounded-lg text-sm font-medium hover:text-brand-yellow hover:bg-slate-800/50 transition-all">Beranda</a>
-                    <a href="#about" class="px-4 py-2 rounded-lg text-sm font-medium hover:text-brand-yellow hover:bg-slate-800/50 transition-all">Tentang Saya</a>
-                    <a href="#skills" class="px-4 py-2 rounded-lg text-sm font-medium hover:text-brand-yellow hover:bg-slate-800/50 transition-all">Keahlian</a>
-                    <a href="#projects" class="px-4 py-2 rounded-lg text-sm font-medium hover:text-brand-yellow hover:bg-slate-800/50 transition-all">Proyek</a>
-                    <a href="#experience" class="px-4 py-2 rounded-lg text-sm font-medium hover:text-brand-yellow hover:bg-slate-800/50 transition-all">Pengalaman</a>
-                </nav>
+                <!-- Area Kanan: Menu Navigasi Menempel Rapat di Sebelah Kiri Tombol Theme & Download CV -->
+                <div class="hidden md:flex items-center space-x-4 lg:space-x-5 flex-shrink-0">
+                    <nav class="flex items-center space-x-5 lg:space-x-6 text-sm font-medium">
+                        <a href="#tentang" class="hover:text-cyan-400 transition-colors">Tentang</a>
+                        <a href="#pendidikan" class="hover:text-cyan-400 transition-colors">Pendidikan</a>
+                        <a href="#keterampilan" class="hover:text-cyan-400 transition-colors">Keterampilan</a>
+                        <a href="#proyek" class="hover:text-cyan-400 transition-colors">Proyek</a>
+                        <a href="#pengalaman" class="hover:text-cyan-400 transition-colors">Pengalaman</a>
+                        <a href="#sertifikat" class="hover:text-cyan-400 transition-colors">Sertifikat</a>
+                        <a href="#kontak" class="hover:text-cyan-400 transition-colors">Kontak</a>
+                    </nav>
 
-                <!-- CTA Button & Mobile Toggle -->
-                <div class="flex items-center gap-4 animate-fade-in-down">
-                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-yellow text-brand-black font-semibold text-sm hover:bg-brand-yellowHover hover:shadow-lg hover:shadow-brand-yellow/20 transition-all active:scale-95">
-                        <i data-lucide="send" class="w-4 h-4"></i>
-                        <span>Hubungi Saya</span>
-                    </a>
+<!-- Wrapper Dropdown Download CV -->
+<div class="relative inline-block text-left group">
+    <!-- Tombol Utama -->
+    <button type="button" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors">
+        <i class="fas fa-download"></i>
+        <span>Download CV</span>
+        <i class="fas fa-chevron-down text-xs ml-1 transition-transform group-hover:rotate-180"></i>
+    </button>
 
-                    <button id="menu-btn" class="md:hidden p-2 rounded-lg bg-slate-800 text-brand-white hover:text-brand-yellow focus:outline-none" aria-label="Toggle Navigation">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
+    <!-- Menu Pilihan (Tampil saat kursor diarahkan ke tombol) -->
+    <div class="absolute left-0 sm:right-0 sm:left-auto mt-2 w-56 rounded-xl bg-slate-800 border border-slate-700 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 overflow-hidden">
+        <div class="py-1">
+            <!-- Pilihan CV 1 -->
+            <a href="CV-ERIK ARDIANSYAH_Indonesia.pdf" download="CV-ERIK ARDIANSYAH_Indonesia.pdf" class="flex items-center gap-3 px-4 py-3 text-sm text-slate-200 hover:bg-slate-700/60 transition-colors">
+                <i class="fas fa-file-pdf text-red-400 text-base"></i>
+                <div>
+                    <p class="font-medium leading-none">CV Bahasa Indonesia</p>
+                    <span class="text-xs text-slate-400">Format PDF</span>
                 </div>
-            </div>
-        </div>
+            </a>
 
+            <div class="border-t border-slate-700/60"></div>
+
+            <!-- Pilihan CV 2 -->
+            <a href="CV-ERIK ARDIANSYAH_English.pdf" download="CV-ERIK ARDIANSYAH_English.pdf" class="flex items-center gap-3 px-4 py-3 text-sm text-slate-200 hover:bg-slate-700/60 transition-colors">
+                <i class="fas fa-file-pdf text-red-400 text-base"></i>
+                <div>
+                    <p class="font-medium leading-none">CV English Version</p>
+                    <span class="text-xs text-slate-400">Format PDF</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+           
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
-            <a href="#hero" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium text-brand-white hover:bg-brand-blue hover:text-white transition-all">Beranda</a>
-            <a href="#about" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium text-brand-white hover:bg-brand-blue hover:text-white transition-all">Tentang Saya</a>
-            <a href="#skills" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium text-brand-white hover:bg-brand-blue hover:text-white transition-all">Keahlian</a>
-            <a href="#projects" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium text-brand-white hover:bg-brand-blue hover:text-white transition-all">Proyek</a>
-            <a href="#experience" class="mobile-link block px-4 py-3 rounded-lg text-base font-medium text-brand-white hover:bg-brand-blue hover:text-white transition-all">Pengalaman</a>
-            <a href="#contact" class="mobile-link block px-4 py-3 rounded-lg text-base font-semibold bg-brand-yellow text-brand-black text-center mt-4">Hubungi Saya</a>
+        <div id="mobileMenu" class="hidden md:hidden bg-darkcard/95 dark:bg-darkcard/95 light:bg-white/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#tentang" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Tentang</a>
+            <a href="#pendidikan" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Pendidikan</a>
+            <a href="#keterampilan" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Keterampilan</a>
+            <a href="#proyek" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Proyek</a>
+            <a href="#pengalaman" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Pengalaman</a>
+            <a href="#sertifikat" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Sertifikat</a>
+            <a href="#kontak" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400">Kontak</a>
+            <a href="#" onclick="alert('Simulasi: Mengunduh CV Erik Ardiansyah (PDF)...')" class="block w-full text-center py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold shadow-md">Download CV (PDF)</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen pt-32 pb-20 flex items-center justify-center relative overflow-hidden">
-        <!-- Background Ambient Glow -->
-        <div class="absolute top-1/4 left-10 w-72 h-72 bg-brand-blue/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 right-10 w-80 h-80 bg-brand-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-12">
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section class="min-h-[80vh] flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 xl:gap-20 pt-6">
+            <div class="flex-1 max-w-xl space-y-6 text-center lg:text-left lg:pl-6 xl:pl-10">
+        
+                <h1 class="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-none mb-1">
+                    ERIK ARDIANSYAH
+                    <p class="text-white font-mono text-lg sm:text-xl mt-1">    
+                    &lt;Mechanical Engineer &amp; Robotics Specialist&gt;
+                </p>
+                </h1>
                 
-                <!-- Left Intro Text -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 border border-slate-700 text-brand-yellow text-xs sm:text-sm font-semibold tracking-wide animate-fade-in-up">
-                        <span class="w-2 h-2 rounded-full bg-brand-yellow animate-ping"></span>
-                        Terbuka Untuk Proyek Baru
+                <p class="text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-2xl text-base sm:text-lg leading-relaxed mx-auto lg:mx-0 text-justify">
+                    Lulusan Teknik Elektro, program studi Teknologi Rekayasa Robotika yang berfokus pada perancangan mekanik robotik, simulasi 3D CAD/CFD, kontrol presisi PID, serta otomatisasi industri berbasis PLC dan Microcontroller.
+                </p>
+
+                <!-- Quick Contact Bar -->
+                <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-4 text-xs sm:text-sm text-slate-300 dark:text-slate-300 light:text-slate-700">
+                    <span class="flex items-center space-x-2 bg-slate-800/60 dark:bg-slate-800/60 light:bg-slate-200/60 px-3 py-1.5 rounded-md border border-slate-700/50">
+                        <i class="fas fa-envelope text-cyan-400"></i>
+                        <a href="mailto:erikardiansyah253@gmail.com" class="hover:underline">erikardiansyah253@gmail.com</a>
+                    </span>
+                    <span class="flex items-center space-x-2 bg-slate-800/60 dark:bg-slate-800/60 light:bg-slate-200/60 px-3 py-1.5 rounded-md border border-slate-700/50">
+                        <i class="fas fa-phone text-cyan-400"></i>
+                        <span>+62 823-8782-1800</span>
+                    </span>
+                    <span class="flex items-center space-x-2 bg-slate-800/60 dark:bg-slate-800/60 light:bg-slate-200/60 px-3 py-1.5 rounded-md border border-slate-700/50">
+                        <i class="fas fa-map-marker-alt text-cyan-400"></i>
+                        <span>Nongsa, Batam</span>
+                    </span>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#proyek" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-500/20 hover:scale-[1.02] active:scale-95 transition-all text-center">
+                        <i class="fas fa-project-diagram mr-2"></i> Lihat Proyek
+                    </a>
+                    <a href="#kontak" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold border border-slate-700 hover:border-cyan-400 dark:bg-slate-900/50 light:bg-white text-slate-200 dark:text-slate-200 light:text-slate-800 hover:text-cyan-400 hover:scale-[1.02] active:scale-95 transition-all text-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Hubungi Saya
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Avatar / Interactive Tech Display -->
+            <div class="relative flex-1 flex justify-center items-center">
+                <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-2xl bg-darkcard dark:bg-darkcard light:bg-white border-2 border-slate-700 dark:border-slate-700 light:border-slate-300 p-4 shadow-2xl flex flex-col items-center justify-between overflow-hidden group">
+                    
+                    
+                    <!-- Avatar Foto Profil -->
+                    <div class="relative my-auto flex items-center justify-center">
+                        <div class="w-44 h-44 sm:w-56 sm:h-56 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center overflow-hidden">
+                            <img src="foto2.jpeg" alt="Erik Ardiansyah" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <!-- Tech Ring Badge -->
+                        <div class="absolute -bottom-2 px-3 py-1 rounded-full bg-cyan-500 text-slate-950 text-xs font-bold font-mono shadow-md text-center">
+                            D4-ROBOTICS ENGINEERING TECHNOLOGY
+                        </div>
                     </div>
 
-                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-brand-white leading-tight animate-fade-in-up delay-100">
-                        bro sigma, Saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-amber-300 to-brand-blue">Erik</span><br>
-                        Web Developer & Designer
-                    </h1>
+                    <div class="w-full text-center pt-2 border-t border-slate-800">
+                        <span class="text-xs font-mono text-slate-400">Erik Ardiansyah, S.Tr.T.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <p class="text-lg text-brand-grayText max-w-2xl mx-auto lg:mx-0 animate-fade-in-up delay-200">
-                        Saya merancang dan membangun pengalaman web modern yang cepat, responsif, serta menarik secara visual menggunakan teknologi terkini.
+        <section id="tentang" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Tentang Saya</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Bio Card -->
+                <div class="lg:col-span-2 bg-darkcard dark:bg-darkcard light:bg-white rounded-2xl p-6 sm:p-8 border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl space-y-6">
+                    <h3 class="text-xl font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 flex items-center">
+                        <i class="fas fa-user-gear text-cyan-400 mr-3"></i> Profil Profesional
+                    </h3>
+                    <p class="text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                        Saya adalah lulusan D4 Teknik Rekayasa Robotika dari Politeknik Negeri Batam dengan passion mendalam di bidang rekayasa mekanik, sistem elektrikal, dan robotika otonom. Berpengalaman aktif dalam perancangan manufaktur mekanik, analisis simulasi (CAD/CFD), perakitan & wiring kelistrikan, serta integrasi otomatisasi berbasis PLC dan Microcontroller pada platform robotika seperti Delivery Robot dan Autonomous Hockey Robot.
+                    </p>
+                    <p class="text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                        Selama studi, saya Memadukan kemampuan akademis, simulasi teknis presisi, serta aplikasi praktis di laboratorium dan kompetisi nasional/regional untuk menghasilkan inovasi teknis yang efisien, handal, dan siap terap di industri.
                     </p>
 
-                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4 animate-fade-in-up delay-300">
-                        <a href="#projects" class="px-7 py-3.5 rounded-xl bg-brand-blue text-white font-semibold hover:bg-brand-blueLight shadow-lg shadow-brand-blue/30 hover:-translate-y-0.5 transition-all flex items-center gap-2">
-                            <span>Lihat Karya Saya</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#contact" class="px-7 py-3.5 rounded-xl border border-slate-700 hover:border-brand-yellow bg-slate-900/50 text-brand-white font-semibold hover:text-brand-yellow transition-all">
-                            Kontak Saya
-                        </a>
-                    </div>
-
-                    <!-- Social Media Links -->
-                    <div class="flex items-center justify-center lg:justify-start gap-5 pt-6 text-brand-grayText animate-fade-in-up delay-400">
-                        <a href="#" class="p-2.5 rounded-lg bg-slate-800/60 hover:text-brand-yellow hover:bg-slate-800 transition-all" aria-label="GitHub">
-                            <i data-lucide="github" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="p-2.5 rounded-lg bg-slate-800/60 hover:text-brand-blue hover:bg-slate-800 transition-all" aria-label="LinkedIn">
-                            <i data-lucide="linkedin" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" class="p-2.5 rounded-lg bg-slate-800/60 hover:text-brand-yellow hover:bg-slate-800 transition-all" aria-label="Instagram">
-                            <i data-lucide="instagram" class="w-5 h-5"></i>
-                        </a>
+                    <!-- Work Motto Box -->
+                    <div class="p-4 rounded-xl bg-gradient-to-r from-cyan-950/40 to-blue-950/40 border border-cyan-500/30 space-y-2">
+                        <span class="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider flex items-center">
+                            <i class="fas fa-quote-left mr-2"></i> Motto Bekerja
+                        </span>
+                        <blockquote class="italic text-sm text-slate-200 dark:text-slate-200 light:text-slate-800">
+                            "Bagi saya, setiap proses adalah ruang belajar, setiap tantangan adalah pengalaman, dan setiap hasil adalah tanggung jawab yang harus dijalani dengan sepenuh hati."
+                        </blockquote>
                     </div>
                 </div>
 
-                <!-- Right Profile Card/Visual -->
-                <div class="lg:col-span-5 flex justify-center animate-fade-in-up delay-300">
-                    <div class="relative group">
-                        <!-- Yellow/Blue Gradient Outer Ring -->
-                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-yellow to-brand-blue rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                        
-                        <div class="relative w-72 h-80 sm:w-80 sm:h-96 rounded-3xl bg-brand-card p-4 border border-slate-700/60 flex flex-col justify-between overflow-hidden shadow-2xl">
-                            <!-- Placeholder Avatar Illustration -->
-                            <div class="w-full h-full bg-slate-800 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden group">
-                                <i data-lucide="code-2" class="w-24 h-24 text-brand-blue opacity-40 group-hover:scale-110 transition-transform duration-500"></i>
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur border border-slate-700 p-3 rounded-xl flex items-center justify-between">
-                                    <div>
-                                        <p class="text-xs text-brand-grayText">Status Saat Ini</p>
-                                        <p class="text-sm font-bold text-brand-yellow">Menerima Freelance</p>
-                                    </div>
-                                    <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-                                </div>
+                <!-- Focus Engineering Checklist -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white rounded-2xl p-6 sm:p-8 border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl space-y-6">
+                    <h3 class="text-xl font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 flex items-center">
+                        <i class="fas fa-bullseye text-cyan-400 mr-3"></i> Fokus Engineering
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300 dark:text-slate-300 light:text-slate-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Desain Mekanik & Manufaktur Robot (SolidWorks 3D)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Simulasi CFD & Analisis Tegangan Struktur (FEA)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Sistem Kontrol Presisi (PID & PLC Automation)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Integrasi Navigasi Sensor (LiDAR & Temperature Monitoring)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-400 mt-1 mr-3 shrink-0"></i>
+                            <span>Delivery & Mobile Service Robotics</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="pendidikan" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Riwayat Pendidikan</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto before:absolute before:inset-0 before:left-1/2 before:-ml-0.5 before:w-0.5 before:bg-gradient-to-b before:from-cyan-500 before:to-purple-600">
+                
+                <!-- Polibatam Timeline -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group mb-8">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-darkbg border-2 border-cyan-400 text-cyan-400 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] bg-darkcard dark:bg-darkcard light:bg-white p-6 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <h3 class="font-bold text-lg text-slate-100 dark:text-slate-100 light:text-slate-900">Politeknik Negeri Batam</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">2022 - 2026</span>
+                        </div>
+                        <p class="text-sm font-semibold text-cyan-400 mb-2">D4 Teknik Rekayasa Robotika</p>
+                        <div class="inline-block px-3 py-1 rounded-lg bg-slate-800 dark:bg-slate-800 light:bg-slate-100 text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 mb-3">
+                            <i class="fas fa-award text-yellow-400 mr-1"></i> IPK: 3.40 / 4.00
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Fokus pada rekayasa sistem mekatronika, desain mekanik CAD presisi, otomasi kontrol industri, pemrosesan sensor otonom, dan pengerjaan Project Based Learning (PBL).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SMKN 3 Pariaman Timeline -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-darkbg border-2 border-purple-500 text-purple-400 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg z-10">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] bg-darkcard dark:bg-darkcard light:bg-white p-6 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl">
+                        <div class="flex items-center justify-between space-x-2 mb-1">
+                            <h3 class="font-bold text-lg text-slate-100 dark:text-slate-100 light:text-slate-900">SMKN 3 Pariaman</h3>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">2019 - 2022</span>
+                        </div>
+                        <p class="text-sm font-semibold text-purple-400 mb-2">Teknik Komputer & Jaringan (TKJ)</p>
+                        <div class="inline-block px-3 py-1 rounded-lg bg-slate-800 dark:bg-slate-800 light:bg-slate-100 text-xs font-mono text-slate-300 dark:text-slate-300 light:text-slate-700 mb-3">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i> Nilai Rata-rata: 90
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Mempelajari dasar-dasar jaringan komputer, perakitan hardware, troubleshooting sistem, dasar pemrograman, dan logika perangkat keras.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="keterampilan" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Keterampilan & Perangkat</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <!-- Tab Navigation Filter -->
+            <div class="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto" id="skillsTabContainer">
+                <button onclick="filterSkills('all')" class="skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-cyan-500 text-slate-950 active-tab" data-category="all">
+                    Semua Kategori
+                </button>
+                <button onclick="filterSkills('engineering')" class="skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-category="engineering">
+                    Teknis (Engineering)
+                </button>
+                <button onclick="filterSkills('software')" class="skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-category="software">
+                    Software / Perangkat Lunak
+                </button>
+                <button onclick="filterSkills('hardware')" class="skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-category="hardware">
+                    Hardware / Perangkat Keras
+                </button>
+                <button onclick="filterSkills('analytical')" class="skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-category="analytical">
+                    Analitis & Profesional
+                </button>
+            </div>
+
+            <!-- Skill Grid Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="skillsGrid">
+                
+                <!-- Engineering Skills -->
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="engineering">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-cube text-cyan-400 mr-2.5"></i> SolidWorks 3D Modeling
+                        </span>
+                        <span class="text-xs font-mono text-cyan-400">90%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="engineering">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-wind text-cyan-400 mr-2.5"></i> CFD Simulation & FEA
+                        </span>
+                        <span class="text-xs font-mono text-cyan-400">85%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="engineering">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-sliders-h text-cyan-400 mr-2.5"></i> PID Tuning & Control
+                        </span>
+                        <span class="text-xs font-mono text-cyan-400">80%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="engineering">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-microchip text-cyan-400 mr-2.5"></i> PLC Programming
+                        </span>
+                        <span class="text-xs font-mono text-cyan-400">82%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+
+                <!-- Hardware Skills -->
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="hardware">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-plug text-purple-400 mr-2.5"></i> Electrical Wiring & Panel
+                        </span>
+                        <span class="text-xs font-mono text-purple-400">88%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+
+
+                <!-- Software Skills -->
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="software">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fab fa-linux text-green-400 mr-2.5"></i> Ubuntu / ROS Environment
+                        </span>
+                        <span class="text-xs font-mono text-green-400">78%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" style="width: 78%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="software">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-code text-green-400 mr-2.5"></i> VS Code & C/C++ / Python
+                        </span>
+                        <span class="text-xs font-mono text-green-400">80%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <!-- Analytical Skills -->
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="analytical">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-chart-line text-yellow-400 mr-2.5"></i> Analisis Mekanikal & Simulasi
+                        </span>
+                        <span class="text-xs font-mono text-yellow-400">87%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-yellow-500 to-amber-500 h-2 rounded-full" style="width: 87%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md" data-category="analytical">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 flex items-center">
+                            <i class="fas fa-users text-yellow-400 mr-2.5"></i> Kepemimpinan & Manajemen Asset
+                        </span>
+                        <span class="text-xs font-mono text-yellow-400">92%</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2">
+                        <div class="bg-gradient-to-r from-yellow-500 to-amber-500 h-2 rounded-full" style="width: 92%"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="proyek" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Proyek Unggulan</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <!-- Project Filter Buttons -->
+            <div class="flex justify-center space-x-3">
+                <button onclick="filterProjects('all')" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-slate-950 active-proj-btn" data-proj="all">Semua</button>
+                <button onclick="filterProjects('robotics')" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700" data-proj="robotics">Robotika</button>
+                <button onclick="filterProjects('achievement')" class="proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700" data-proj="achievement">Prestasi</button>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: Delivery Robot -->
+                <div class="proj-card bg-darkcard dark:bg-darkcard light:bg-white rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 overflow-hidden shadow-xl hover:border-cyan-500/50 transition-all group" data-type="robotics achievement">
+                    <div class="relative h-52 bg-slate-800 overflow-hidden flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="Delivery Robot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkcard via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 flex space-x-2">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-yellow-500 text-slate-950 flex items-center shadow-md">
+                                <i class="fas fa-trophy mr-1"></i> Juara 3 Teknologi Tepat Guna (TTG)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between text-xs font-mono text-cyan-400">
+                            <span>2023 - 2025</span>
+                            <span>POLIBATAM PBL</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 group-hover:text-cyan-400 transition-colors">
+                            Delivery Robot Politeknik Negeri Batam
+                        </h3>
+                        <p class="text-sm text-slate-400 line-clamp-2">
+                            Robot pengantar otomatis dilengkapi fitur navigasi LiDAR 2D, pemantauan suhu box real-time, integrasi QR barcode link, serta sasis berketahanan tinggi.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-cyan-300">SolidWorks CAD</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-cyan-300">LiDAR Nav</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-cyan-300">Temp Monitor</span>
+                        </div>
+                        <button onclick="openModal('modalDelivery')" class="w-full py-2.5 rounded-xl border border-cyan-500/30 text-cyan-400 font-semibold text-sm hover:bg-cyan-500 hover:text-slate-950 transition-colors flex items-center justify-center space-x-2">
+                            <span>Detail Proyek & Prestasi</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Autonomous Hockey Robot -->
+                <div class="proj-card bg-darkcard dark:bg-darkcard light:bg-white rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 overflow-hidden shadow-xl hover:border-cyan-500/50 transition-all group" data-type="robotics">
+                    <div class="relative h-52 bg-slate-800 overflow-hidden flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=800&q=80" alt="Autonomous Hockey Robot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkcard via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3">
+                            <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-cyan-500 text-slate-950">
+                                Mechanical Design
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between text-xs font-mono text-cyan-400">
+                            <span>2022</span>
+                            <span>Project base learning</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 group-hover:text-cyan-400 transition-colors">
+                            Robot Hockey
+                        </h3>
+                        <p class="text-sm text-slate-400 line-clamp-2">
+                            Perancangan sasis robot hockey yang compact, presisi, ringan namun kokoh untuk manuver cepat dan ketahanan benturan tinggi di arena tanding.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-purple-300">Compact Chassis</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-purple-300">Kinematics</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-purple-300">Aluminum Alloy</span>
+                        </div>
+                        <button onclick="openModal('modalHockey')" class="w-full py-2.5 rounded-xl border border-cyan-500/30 text-cyan-400 font-semibold text-sm hover:bg-cyan-500 hover:text-slate-950 transition-colors flex items-center justify-center space-x-2">
+                            <span>Detail Proyek</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="pengalaman" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Pengalaman & Organisasi</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- UKM KUAS Polibatam -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white p-6 sm:p-8 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl space-y-6">
+                    <div class="flex items-center space-x-4 border-b border-slate-800 pb-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl font-bold">
+                            <i class="fas fa-users-gear"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-100 dark:text-slate-100 light:text-slate-900">Kumpulan Anak Seni (KUAS) Polibatam</h3>
+                            <p class="text-xs font-mono text-cyan-400">Jejang Kepemimpinan Organisasi</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-sm">
+                        <div class="relative pl-6 border-l-2 border-cyan-500 space-y-1">
+                            <span class="text-xs font-mono text-cyan-400">2025 - Saat ini</span>
+                            <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Dewan Penasehat Agung</h4>
+                            <p class="text-xs text-slate-400">Memberikan arahan strategis, evaluasi tata kelola organisasi, serta membimbing kepengurusan generasi penerus.</p>
+                        </div>
+
+                        <div class="relative pl-6 border-l-2 border-slate-700 space-y-1">
+                            <span class="text-xs font-mono text-slate-400">2024</span>
+                            <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Kepala Inventaris Asset UKM KUAS</h4>
+                            <p class="text-xs text-slate-400">Mengelola aset komponen elektronik, perkakas mesin, fasilitas laboratorium, dan pemeliharaan alat robotika.</p>
+                        </div>
+
+                        <div class="relative pl-6 border-l-2 border-slate-700 space-y-1">
+                            <span class="text-xs font-mono text-slate-400">2023</span>
+                            <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Anggota Divisi Human Resources (HR)</h4>
+                            <p class="text-xs text-slate-400">Mengkoordinasikan rekrutmen anggota baru, program bonding internal, dan pengembangan kapasitas SDM anggota.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kepanitiaan & Program Kemasyarakatan -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white p-6 sm:p-8 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl space-y-6">
+                    <div class="flex items-center space-x-4 border-b border-slate-800 pb-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl font-bold">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-100 dark:text-slate-100 light:text-slate-900">Kepanitiaan & Program Social</h3>
+                            <p class="text-xs font-mono text-purple-400">Aktivitas Voluntaris & Event</p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-star text-purple-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Volunteer Awarding Night Polibatam</h4>
+                                <p class="text-xs text-slate-400">Terlibat aktif dalam manajemen kelancaran acara dan operasional panggung malam penganugerahan kampus.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-chart-pie text-purple-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Fasilitator Galeri Investasi BEI Polibatam</h4>
+                                <p class="text-xs text-slate-400">Membantu penyelenggaraan sosialisasi edukasi finansial dan pasar modal bagi kalangan mahasiswa.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-palette text-purple-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Panitia Festival Seni Kampus</h4>
+                                <p class="text-xs text-slate-400">Mengurus tata logistik, perlengkapan panggung, serta teknis peralatan audio-visual.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-city text-purple-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800">Volunteer Program Komunitas & Pemerintah</h4>
+                                <p class="text-xs text-slate-400">Kontribusi dalam kegiatan sosial pemberdayaan masyarakat lokal daerah Batam.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="sertifikat" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Sertifikat & Penghargaan</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Cert 1 -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-lg hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm">Juara 3 TTG PBL Expo 2024</h3>
+                        <p class="text-xs text-slate-400">Penghargaan inovasi Teknologi Tepat Guna melalui proyek Delivery Robot Otonom.</p>
+                    </div>
+                    <span class="mt-4 text-[10px] font-mono text-cyan-400 block border-t border-slate-800 pt-2">Politeknik Negeri Batam • 2024</span>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-lg hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm">Juara 3 Kepri Engineering Expo 2023</h3>
+                        <p class="text-xs text-slate-400">Kompetisi inovasi teknik tingkat Provinsi Kepulauan Riau.</p>
+                    </div>
+                    <span class="mt-4 text-[10px] font-mono text-cyan-400 block border-t border-slate-800 pt-2">Kepri Expo Committee • 2023</span>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-lg hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm">PBL Expo Award 2023 & 2024</h3>
+                        <p class="text-xs text-slate-400">Sertifikat apresiasi keikutsertaan dan performa terbaik dalam Project Based Learning.</p>
+                    </div>
+                    <span class="mt-4 text-[10px] font-mono text-purple-400 block border-t border-slate-800 pt-2">Polibatam • 2023 - 2024</span>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="bg-darkcard dark:bg-darkcard light:bg-white p-5 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-lg hover:border-cyan-500/50 transition-all flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 rounded-lg bg-green-500/10 text-green-400 flex items-center justify-center text-xl">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm">Sertifikasi Otomasi Industry & PLC</h3>
+                        <p class="text-xs text-slate-400">Kompetensi pemrograman dasar hingga menengah PLC dan kelistrikan industri.</p>
+                    </div>
+                    <span class="mt-4 text-[10px] font-mono text-green-400 block border-t border-slate-800 pt-2">Sertifikasi Pelatihan Teknik</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak" class="scroll-mt-24 space-y-8">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <h2 class="text-3xl font-extrabold text-gradient">Hubungi Saya</h2>
+                <div class="w-16 h-1 bg-cyan-500 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
+                <!-- Direct Contact Info -->
+                <div class="lg:col-span-2 bg-darkcard dark:bg-darkcard light:bg-white p-6 sm:p-8 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl space-y-6">
+                    <h3 class="text-xl font-bold text-slate-100 dark:text-slate-100 light:text-slate-900">Mari Berdiskusi Proyek</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        Terbuka untuk peluang karir, kolaborasi riset mekanik robotika, pengerjaan proyek otomasi, maupun diskusi seputar engineering.
+                    </p>
+
+                    <div class="space-y-4 font-mono text-xs sm:text-sm">
+                        <div class="flex items-center space-x-3 text-slate-300">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="truncate">erikardiansyah253@gmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-slate-300">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <span>+62 823-8782-1800</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-slate-300">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span>Kec. Nongsa, Kota Batam, Kepri</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Contact Form -->
+                <div class="lg:col-span-3 bg-darkcard dark:bg-darkcard light:bg-white p-6 sm:p-8 rounded-2xl border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-xl">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">NAMA LENGKAP</label>
+                                <input type="text" required placeholder="Masukkan nama Anda" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-900 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm focus:outline-none focus:border-cyan-400 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 mb-1">EMAIL</label>
+                                <input type="email" required placeholder="nama@email.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-900 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm focus:outline-none focus:border-cyan-400 transition-colors">
                             </div>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-slate-900/50 relative border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">Tentang Saya</h2>
-                <p class="text-3xl sm:text-4xl font-bold text-brand-white">Menghubungkan Desain Kreatif dengan Kode Berkualitas</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="p-8 rounded-2xl bg-brand-card border border-slate-800 hover:border-brand-blue transition-all duration-300 hover:-translate-y-2 group">
-                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                        <i data-lucide="layout" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-brand-white">Desain Web UI/UX</h3>
-                    <p class="text-brand-grayText text-sm leading-relaxed">
-                        Fokus pada pembuatan antarmuka pengguna yang bersih, intuitif, dan responsif untuk memaksimalkan pengalaman pengguna.
-                    </p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="p-8 rounded-2xl bg-brand-card border border-slate-800 hover:border-brand-yellow transition-all duration-300 hover:-translate-y-2 group">
-                    <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 text-brand-yellow flex items-center justify-center mb-6 group-hover:bg-brand-yellow group-hover:text-brand-black transition-colors">
-                        <i data-lucide="code" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-brand-white">Frontend Dev</h3>
-                    <p class="text-brand-grayText text-sm leading-relaxed">
-                        Mengembangkan aplikasi web interaktif berbasis HTML, CSS, JavaScript, Tailwind CSS, serta React / Next.js.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="p-8 rounded-2xl bg-brand-card border border-slate-800 hover:border-brand-blue transition-all duration-300 hover:-translate-y-2 group">
-                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-brand-white">Optimasi Performa</h3>
-                    <p class="text-brand-grayText text-sm leading-relaxed">
-                        Memastikan struktur kode efisien, cepat dimuat, SEO friendly, serta optimal di berbagai ukuran perangkat.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">Keahlian & Teknologi</h2>
-                <p class="text-3xl sm:text-4xl font-bold text-brand-white">Perangkat & Bahasa Yang Digunakan</p>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                <!-- Skill Item -->
-                <div class="p-4 rounded-xl bg-brand-card border border-slate-800 flex flex-col items-center justify-center text-center gap-3 hover:border-brand-yellow transition-all">
-                    <i data-lucide="file-code" class="w-8 h-8 text-brand-yellow"></i>
-                    <span class="font-semibold text-sm">HTML & CSS</span>
-                </div>
-                <div class="p-4 rounded-xl bg-brand-card border border-slate-800 flex flex-col items-center justify-center text-center gap-3 hover:border-brand-yellow transition-all">
-                    <i data-lucide="file-json" class="w-8 h-8 text-brand-yellow"></i>
-                    <span class="font-semibold text-sm">JavaScript</span>
-                </div>
-                <div class="p-4 rounded-xl bg-brand-card border border-slate-800 flex flex-col items-center justify-center text-center gap-3 hover:border-brand-blue transition-all">
-                    <i data-lucide="wind" class="w-8 h-8 text-brand-blue"></i>
-                    <span class="font-semibold text-sm">Tailwind CSS</span>
-                </div>
-                <div class="p-4 rounded-xl bg-brand-card border border-slate-800 flex flex-col items-center justify-center text-center gap-3 hover:border-brand-blue transition-all">
-                    <i data-lucide="atom" class="w-8 h-8 text-brand-blue"></i>
-                    <span class="font-semibold text-sm">React JS</span>
-                </div>
-                <div class="p-4 rounded-xl bg-brand-card border border-slate-800 flex flex-col items-center justify-center text-center gap-3 hover:border-brand-yellow transition-all">
-                    <i data-lucide="git-branch" class="w-8 h-8 text-brand-yellow"></i>
-                    <span class="font-semibold text-sm">Git & GitHub</span>
-                </div>
-                <div class="p-4 rounded-xl bg-brand-card border border-slate-800 flex flex-col items-center justify-center text-center gap-3 hover:border-brand-blue transition-all">
-                    <i data-lucide="figma" class="w-8 h-8 text-brand-blue"></i>
-                    <span class="font-semibold text-sm">Figma</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Showcase -->
-    <section id="projects" class="py-24 bg-slate-900/50 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
-                <div>
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">Portofolio Kunci</h2>
-                    <p class="text-3xl sm:text-4xl font-bold text-brand-white">Proyek Terbaru</p>
-                </div>
-                <p class="text-brand-grayText mt-4 md:mt-0 max-w-md">
-                    Beberapa contoh proyek web yang telah selesai saya kerjakan baru-baru ini.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="rounded-2xl bg-brand-card border border-slate-800 overflow-hidden group hover:border-brand-blue transition-all">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
-                        <i data-lucide="shopping-cart" class="w-16 h-16 text-slate-700 group-hover:scale-110 transition-transform duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-brand-blue text-white text-xs px-2.5 py-1 rounded-full font-semibold">Web App</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-brand-white group-hover:text-brand-yellow transition-colors">E-Commerce Platform</h3>
-                        <p class="text-brand-grayText text-sm mb-4">Toko online responsif dengan fitur keranjang belanja dan checkout terintegrasi.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-                            <span class="text-xs text-brand-blue font-semibold">React + Tailwind</span>
-                            <a href="#" class="text-brand-white hover:text-brand-yellow text-sm font-semibold flex items-center gap-1">
-                                Demo <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </a>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">SUBJEK / JUDUL PESAN</label>
+                            <input type="text" required placeholder="Tawaran Kerja / Diskusi Proyek" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-900 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm focus:outline-none focus:border-cyan-400 transition-colors">
                         </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div class="rounded-2xl bg-brand-card border border-slate-800 overflow-hidden group hover:border-brand-yellow transition-all">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
-                        <i data-lucide="briefcase" class="w-16 h-16 text-slate-700 group-hover:scale-110 transition-transform duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-brand-yellow text-brand-black text-xs px-2.5 py-1 rounded-full font-semibold">Company Profile</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-brand-white group-hover:text-brand-yellow transition-colors">Corporate Landing Page</h3>
-                        <p class="text-brand-grayText text-sm mb-4">Halaman profil perusahaan modern dengan waktu muat super cepat.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-                            <span class="text-xs text-brand-yellow font-semibold">HTML5 + Tailwind</span>
-                            <a href="#" class="text-brand-white hover:text-brand-yellow text-sm font-semibold flex items-center gap-1">
-                                Demo <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </a>
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 mb-1">ISI PESAN</label>
+                            <textarea rows="4" required placeholder="Tuliskan detail pesan Anda di sini..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-slate-900 light:bg-slate-100 border border-slate-800 dark:border-slate-800 light:border-slate-300 text-slate-200 dark:text-slate-200 light:text-slate-800 text-sm focus:outline-none focus:border-cyan-400 transition-colors"></textarea>
                         </div>
-                    </div>
-                </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm shadow-lg shadow-cyan-500/20 hover:brightness-110 active:scale-95 transition-all">
+                            <i class="fas fa-paper-plane mr-2"></i> Kirim Pesan Sekarang
+                        </button>
+                    </form>
 
-                <!-- Project Card 3 -->
-                <div class="rounded-2xl bg-brand-card border border-slate-800 overflow-hidden group hover:border-brand-blue transition-all">
-                    <div class="h-48 bg-slate-800 relative overflow-hidden flex items-center justify-center">
-                        <i data-lucide="bar-chart-3" class="w-16 h-16 text-slate-700 group-hover:scale-110 transition-transform duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-brand-blue text-white text-xs px-2.5 py-1 rounded-full font-semibold">Dashboard</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-brand-white group-hover:text-brand-yellow transition-colors">Analytics Dashboard</h3>
-                        <p class="text-brand-grayText text-sm mb-4">Dashboard manajemen data interaktif dengan grafik real-time.</p>
-                        <div class="flex items-center justify-between pt-4 border-t border-slate-800">
-                            <span class="text-xs text-brand-blue font-semibold">JavaScript + ChartJS</span>
-                            <a href="#" class="text-brand-white hover:text-brand-yellow text-sm font-semibold flex items-center gap-1">
-                                Demo <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </a>
-                        </div>
+                    <!-- Form Status Alert Simulation -->
+                    <div id="formSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-mono text-center">
+                        <i class="fas fa-check-circle mr-2"></i> Terima kasih! Pesan Anda telah berhasil terkirim.
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-24">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">Riwayat</h2>
-                <p class="text-3xl sm:text-4xl font-bold text-brand-white">Pengalaman Kerja</p>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-darkbg text-slate-200 mt-24 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <span class="text-lg font-bold text-gradient">THANK YOU</span>
+                <p class="text-xs text-slate-500 mt-1">© 2026 Erik Ardiansyah. D4 Teknik Rekayasa Robotika - Politeknik Negeri Batam.</p>
             </div>
-
-            <div class="relative border-l-2 border-slate-800 ml-4 md:ml-32 space-y-12">
-                <!-- Timeline Item 1 -->
-                <div class="relative pl-8 group">
-                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-yellow border-4 border-brand-black group-hover:scale-125 transition-transform"></div>
-                    <span class="text-xs font-bold text-brand-yellow uppercase tracking-wider block mb-1">2023 - Sekarang</span>
-                    <h3 class="text-xl font-bold text-brand-white">Frontend Developer Freelance</h3>
-                    <p class="text-sm text-brand-blue mb-2">Self-Employed</p>
-                    <p class="text-brand-grayText text-sm leading-relaxed">
-                        Membangun berbagai proyek web interaktif untuk klien lokal maupun internasional menggunakan React & Tailwind CSS.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="relative pl-8 group">
-                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-blue border-4 border-brand-black group-hover:scale-125 transition-transform"></div>
-                    <span class="text-xs font-bold text-brand-blue uppercase tracking-wider block mb-1">2022 - 2023</span>
-                    <h3 class="text-xl font-bold text-brand-white">Junior Web Designer</h3>
-                    <p class="text-sm text-brand-blue mb-2">Tech Studio Inc.</p>
-                    <p class="text-brand-grayText text-sm leading-relaxed">
-                        Merancang prototipe antarmuka UI/UX di Figma dan mengimplementasikannya ke dalam bentuk kode HTML/CSS responsif.
-                    </p>
-                </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://www.linkedin.com/in/erik-ardiansyah02/" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:bg-slate-700 transition-colors">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="erikardiansyah253@gmail.com" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:bg-slate-700 transition-colors">
+                    <i class="fas fa-gmail"></i>
+                </a>
+                <a href="https://github.com/Erikardiansyah02" target="_blank" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:bg-slate-700 transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-slate-900/50 border-t border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">Mulai Berkolaborasi</h2>
-            <p class="text-3xl sm:text-4xl font-bold text-brand-white mb-6">Punya Proyek Dalam Pikiran?</p>
-            <p class="text-brand-grayText mb-8 max-w-xl mx-auto">
-                Saya selalu terbuka untuk mendiskusikan peluang kerja sama baru atau sekadar menyapa!
-            </p>
-
-            <a href="mailto:erik@example.com" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-brand-yellow text-brand-black font-extrabold text-lg hover:bg-brand-yellowHover hover:shadow-xl hover:shadow-brand-yellow/20 transition-all active:scale-95">
-                <i data-lucide="mail" class="w-5 h-5"></i>
-                <span>Kirim Pesan Email</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 border-t border-slate-800 text-center text-xs text-brand-grayText">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>© 2026 Erik. Dibuat dengan warna Biru, Kuning, Hitam & Putih.</p>
         </div>
     </footer>
 
+    <!-- Modal Project Delivery Robot -->
+    <div id="modalDelivery" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-darkcard dark:bg-darkcard light:bg-white max-w-2xl w-full rounded-2xl border border-slate-700 p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modalDelivery')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="space-y-2">
+                <span class="text-xs font-mono text-cyan-400">PROJECT DETAIL</span>
+                <h3 class="text-2xl font-bold text-slate-100">Delivery Robot Politeknik Negeri Batam</h3>
+            </div>
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover rounded-xl border border-slate-800">
+            <div class="space-y-4 text-sm text-slate-300">
+                <p>
+                    <strong>Deskripsi Kontribusi Mekanikal:</strong> Bertanggung jawab penuh pada perancangan struktur rangka, desain mekanik mounting sensor LiDAR, sistem pembukaan box otomatis, dan pengujian titik berat kestabilan robot delivery.
+                </p>
+                <p>
+                    <strong>Fitur Unggulan:</strong>
+                </p>
+                <ul class="list-disc pl-5 space-y-1 text-xs">
+                    <li>Pemantauan suhu box penyimpanan makanan/barang secara real-time.</li>
+                    <li>Sistem autentikasi akses penerima menggunakan Scan Barcode / QR Link.</li>
+                    <li>Otomasi navigasi menghindari rintangan otonom dengan LiDAR 2D sensor.</li>
+                </ul>
+                <div class="p-3 rounded-lg bg-slate-800/80 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+                    🏆 Prestasi: Juara 3 TTG PBL Expo 2024 & Juara 3 Kepri Engineering Expo 2023.
+                </div>
+            </div>
+            <div class="pt-4 border-t border-slate-800 flex justify-end">
+                <button onclick="closeModal('modalDelivery')" class="px-5 py-2 rounded-xl bg-slate-800 text-slate-200 text-sm font-semibold hover:bg-slate-700">Tutup Modal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Project Hockey Robot -->
+    <div id="modalHockey" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-darkcard dark:bg-darkcard light:bg-white max-w-2xl w-full rounded-2xl border border-slate-700 p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('modalHockey')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="space-y-2">
+                <span class="text-xs font-mono text-purple-400">PROJECT DETAIL</span>
+                <h3 class="text-2xl font-bold text-slate-100">Autonomous Robot Hockey</h3>
+            </div>
+            <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover rounded-xl border border-slate-800">
+            <div class="space-y-4 text-sm text-slate-300">
+                <p>
+                    <strong>Peran Mechanical Designer:</strong> Merancang sasis robot omni-directional berkemampuan manuver tinggi. Desain difokuskan pada pusat gravitasi rendah untuk mencegah robot terbalik saat benturan kecepatan tinggi.
+                </p>
+                <p>
+                    <strong>Spesifikasi & Material:</strong> Menggunakan struktur paduan Aluminium Alloy ringan hasil pemotongan CNC presisi tinggi, terintegrasi dengan penahan guncangan mekanik.
+                </p>
+            </div>
+            <div class="pt-4 border-t border-slate-800 flex justify-end">
+                <button onclick="closeModal('modalHockey')" class="px-5 py-2 rounded-xl bg-slate-800 text-slate-200 text-sm font-semibold hover:bg-slate-700">Tutup Modal</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeIconMobile = document.getElementById('themeIconMobile');
 
-        // Mobile Menu Toggle Functionality
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                themeIcon.className = 'fas fa-sun text-yellow-500';
+                if(themeIconMobile) themeIconMobile.className = 'fas fa-sun text-yellow-500';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                themeIcon.className = 'fas fa-moon text-cyan-400';
+                if(themeIconMobile) themeIconMobile.className = 'fas fa-moon text-cyan-400';
+            }
+        }
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
 
-        // Close mobile menu when a link is clicked
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Skills Filter Logic
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const buttons = document.querySelectorAll('.skill-tab-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = "skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-cyan-500 text-slate-950 active-tab";
+                } else {
+                    btn.className = "skill-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700";
+                }
             });
-        });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Projects Filter Logic
+        function filterProjects(type) {
+            const projCards = document.querySelectorAll('.proj-card');
+            const projBtns = document.querySelectorAll('.proj-filter-btn');
+
+            projBtns.forEach(btn => {
+                if (btn.getAttribute('data-proj') === type) {
+                    btn.className = "proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-cyan-500 text-slate-950 active-proj-btn";
+                } else {
+                    btn.className = "proj-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700";
+                }
+            });
+
+            projCards.forEach(card => {
+                const types = card.getAttribute('data-type');
+                if (type === 'all' || types.includes(type)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Contact Form Simulation
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('formSuccessAlert');
+            alertBox.classList.remove('hidden');
+            document.getElementById('contactForm').reset();
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 5000);
+        }
     </script>
 </body>
 </html>
