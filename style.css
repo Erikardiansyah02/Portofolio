@@ -5,11 +5,11 @@
     background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #ffffff;
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #00f0ff;
+    background: #ffffff;
 }
 
 .glow-effect {
