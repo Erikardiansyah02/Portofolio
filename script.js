@@ -103,25 +103,29 @@ function closeModal(id) {
 }
 
 // Certificate Modal Controls
-function openCertModal(title, imgSrc) {
+function openCertModal(title, imageSrc, description = '') {
     const modal = document.getElementById('certModal');
-    const modalContent = document.getElementById('certModalContent');
     const modalTitle = document.getElementById('modalTitle');
     const modalImage = document.getElementById('modalImage');
+    const modalDesc = document.getElementById('modalDescription');
 
     modalTitle.textContent = title;
-    modalImage.src = imgSrc;
+    modalImage.src = imageSrc;
+    modalDesc.textContent = description;
+
+    // Tampilkan deskripsi jika ada, sembunyikan jika kosong
+    if (description) {
+        modalDesc.classList.remove('hidden');
+    } else {
+        modalDesc.classList.add('hidden');
+    }
 
     modal.classList.remove('hidden');
     setTimeout(() => {
         modal.classList.remove('opacity-0');
-        modalContent.classList.remove('scale-95');
-        modalContent.classList.add('scale-100');
+        document.getElementById('certModalContent').classList.remove('scale-95');
     }, 10);
-
-    document.body.style.overflow = 'hidden';
 }
-
 function closeCertModal() {
     const modal = document.getElementById('certModal');
     const modalContent = document.getElementById('certModalContent');
@@ -139,9 +143,20 @@ function closeCertModal() {
 }
 
 // Photo Documentation Modal Controls
-function openPhotoModal(imageSrc, title) {
+function openPhotoModal(imageSrc, title, description = '') {
     document.getElementById('photoModalTitle').innerText = title;
     document.getElementById('photoModalImg').src = imageSrc;
+    
+    const descElement = document.getElementById('photoModalDesc');
+    if (descElement) {
+        descElement.innerText = description;
+        if (description) {
+            descElement.classList.remove('hidden');
+        } else {
+            descElement.classList.add('hidden');
+        }
+    }
+
     document.getElementById('modalPhoto').classList.remove('hidden');
 }
 
@@ -152,20 +167,52 @@ function closePhotoModal() {
     }
 }
 
-function openMultiCertModal(title, imageArray) {
+function openMultiCertModal(title, imageArray, description = '') {
+    // 1. Set Judul Modal
     document.getElementById('multiModalTitle').innerText = title;
     
+    // 2. Set Deskripsi Global (jika elemen deskripsi ada di HTML)
+    const modalDesc = document.getElementById('multiModalDescription');
+    if (modalDesc) {
+        modalDesc.innerText = description;
+        if (description) {
+            modalDesc.classList.remove('hidden');
+        } else {
+            modalDesc.classList.add('hidden');
+        }
+    }
+    
+    // 3. Render Gambar ke Container
     const container = document.getElementById('multiImageContainer');
     container.innerHTML = ''; // Bersihkan isi sebelumnya
     
-    // Looping untuk menampilkan setiap foto
-    imageArray.forEach(imgUrl => {
+    imageArray.forEach(item => {
+        // Cek apakah item berupa String (URL saja) atau Object ({ url, caption })
+        const src = typeof item === 'string' ? item : item.url;
+        const caption = typeof item === 'object' && item.caption ? item.caption : '';
+
+        // Wrapper Card per Foto
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex flex-col items-center w-full bg-slate-900/40 p-2.5 rounded-xl border border-slate-800/80';
+
+        // Elemen Gambar
         const imgElement = document.createElement('img');
-        imgElement.src = imgUrl;
-        imgElement.className = 'w-full h-auto rounded-xl border border-slate-800 object-cover shadow-md hover:scale-105 transition-transform';
-        container.appendChild(imgElement);
+        imgElement.src = src;
+        imgElement.className = 'w-full max-h-[60vh] object-contain rounded-lg border border-slate-800 shadow-md hover:scale-[1.02] transition-transform duration-200';
+        wrapper.appendChild(imgElement);
+
+        // Keterangan Teks Per Foto (jika ada caption)
+        if (caption) {
+            const captionElement = document.createElement('p');
+            captionElement.className = 'mt-2 text-xs text-slate-300 text-center font-medium leading-normal';
+            captionElement.innerText = caption;
+            wrapper.appendChild(captionElement);
+        }
+
+        container.appendChild(wrapper);
     });
     
+    // 4. Tampilkan Modal
     document.getElementById('multiCertModal').classList.remove('hidden');
 }
 
